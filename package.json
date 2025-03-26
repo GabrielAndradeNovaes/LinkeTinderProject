@@ -1,0 +1,20 @@
+{
+  "name": "untitled",
+  "version": "1.0.0",
+  "description": "# Linketinder - Sistema de Contratação de Funcionários",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrielAndradeNovaes/LinkeTinderProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GabrielAndradeNovaes/LinkeTinderProject/issues"
+  },
+  "homepage": "https://github.com/GabrielAndradeNovaes/LinkeTinderProject#readme"
+}
