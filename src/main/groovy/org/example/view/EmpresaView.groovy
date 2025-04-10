@@ -9,6 +9,10 @@ class EmpresaView {
     Scanner scanner = new Scanner(System.in)
     EmpresaController controller = new EmpresaController()
 
+    EmpresaView(EmpresaController controller) {
+        this.controller = controller
+    }
+
     void exibirMenu() {
         while (true) {
             println "\n=== MENU EMPRESA ==="

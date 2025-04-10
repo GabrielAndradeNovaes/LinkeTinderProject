@@ -8,6 +8,10 @@ class CompetenciaView {
     Scanner scanner = new Scanner(System.in)
     CompetenciaController controller = new CompetenciaController()
 
+    CompetenciaView(CompetenciaController controller) {
+        this.controller = controller
+    }
+
     void exibirMenu() {
         while (true) {
             println "\n=== MENU DE COMPETÊNCIAS ==="

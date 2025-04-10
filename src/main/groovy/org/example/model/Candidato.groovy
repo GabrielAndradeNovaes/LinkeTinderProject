@@ -25,6 +25,16 @@ class Candidato {
         this.competencias = competencias
     }
 
+    Candidato(Map dados, List<Competencia> competencias) {
+        this.nome = dados.nome
+        this.email = dados.email
+        this.cpf = dados.cpf
+        this.idade = dados.idade
+        this.estado = dados.estado
+        this.cep = dados.cep
+        this.competencias = competencias
+    }
+
     @Override
     String toString() {
         return "Nome: ${nome}, Email: ${email}"

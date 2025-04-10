@@ -4,7 +4,11 @@ import org.example.model.Competencia
 import org.example.Dao.CompetenciaRepository
 
 class CompetenciaController {
-    CompetenciaRepository competenciaRepository = new CompetenciaRepository()
+    CompetenciaRepository competenciaRepository = new CompetenciaRepository()\
+
+    CompetenciaController(CompetenciaRepository competenciaRepository){
+        this.competenciaRepository = competenciaRepository
+    }
 
     void adicionarCompetencia(String nome) {
         Competencia competencia = new Competencia(nome)

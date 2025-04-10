@@ -2,10 +2,16 @@ package org.example.view
 
 import org.example.model.Candidato
 import org.example.controller.CandidatoController
+import org.example.model.Competencia
+
 
 class CandidatoView {
     Scanner scanner = new Scanner(System.in)
     CandidatoController controller = new CandidatoController()
+
+    CandidatoView(CandidatoController controller) {
+        this.controller = controller
+    }
 
     void exibirMenu() {
         while (true) {
@@ -57,7 +63,18 @@ class CandidatoView {
         println "CEP: "
         String cep = scanner.nextLine()
 
-        controller.adicionarCliente(nome, email, cpf, idade, cep, estado)
+        List<Competencia> competencias = []
+        println "Quantas competências deseja adicionar?"
+        int qtd = scanner.nextInt()
+        scanner.nextLine()
+
+        for (int i = 0; i < qtd; i++) {
+            println "Digite o nome da competência ${i + 1}:"
+            String nomeComp = scanner.nextLine()
+            competencias.add(new Competencia(nomeComp))
+        }
+
+        controller.adicionarCliente(nome, email, cpf, idade, cep, estado, competencias)
     }
 
     void listarTodosCandidatos() {

@@ -9,6 +9,10 @@ class VagasView {
     Scanner scanner = new Scanner(System.in)
     VagasController controller = new VagasController()
 
+    VagasView(VagasController controller) {
+        this.controller = controller
+    }
+
     void exibirMenu() {
         while (true) {
             println "\n=== MENU DE VAGAS ==="

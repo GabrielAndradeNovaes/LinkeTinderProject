@@ -15,7 +15,7 @@ class CandidatoRepository {
     }
 
     void inserir(Candidato candidato) {
-        String sql = "INSERT INTO candidato (nome, email, cpf, idade, estado, cep) VALUES (?, ?, ?, ?, ?, ?)"
+        String sql = "INSERT INTO candidato (nome, email, cpf, idade, estado, cep) VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
         try {
             PreparedStatement stmt = con.prepareStatement(sql)
             stmt.with {
@@ -25,9 +25,56 @@ class CandidatoRepository {
                 setInt(4, candidato.idade)
                 setString(5, candidato.estado)
                 setString(6, candidato.cep)
-                executeUpdate()
             }
+
+            ResultSet rs = stmt.executeQuery()
+            Long idCandidato = null
+            if (rs.next()) {
+                idCandidato = rs.getLong("id")
+            }
+            rs.close()
             stmt.close()
+
+            candidato.competencias.each { competencia ->
+                inserirCompetenciaParaCandidato(idCandidato, competencia.nome)
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace()
+        }
+    }
+
+    void inserirCompetenciaParaCandidato(Long idCandidato, String nomeCompetencia) {
+        try {
+            String buscarSql = "SELECT id FROM competencias WHERE nome = ?"
+            PreparedStatement buscarStmt = con.prepareStatement(buscarSql)
+            buscarStmt.setString(1, nomeCompetencia)
+            ResultSet rs = buscarStmt.executeQuery()
+
+            Long idCompetencia
+            if (rs.next()) {
+                idCompetencia = rs.getLong("id")
+            } else {
+                String inserirSql = "INSERT INTO competencias (nome) VALUES (?) RETURNING id"
+                PreparedStatement inserirStmt = con.prepareStatement(inserirSql)
+                inserirStmt.setString(1, nomeCompetencia)
+                ResultSet rsInsert = inserirStmt.executeQuery()
+                if (rsInsert.next()) {
+                    idCompetencia = rsInsert.getLong("id")
+                }
+                rsInsert.close()
+                inserirStmt.close()
+            }
+            rs.close()
+            buscarStmt.close()
+
+            String relacaoSql = "INSERT INTO candidatos_competencias (id_candidato, id_competencia) VALUES (?, ?)"
+            PreparedStatement relacaoStmt = con.prepareStatement(relacaoSql)
+            relacaoStmt.setLong(1, idCandidato)
+            relacaoStmt.setLong(2, idCompetencia)
+            relacaoStmt.executeUpdate()
+            relacaoStmt.close()
+
         } catch (SQLException e) {
             e.printStackTrace()
         }

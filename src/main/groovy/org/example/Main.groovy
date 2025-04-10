@@ -1,6 +1,5 @@
 package org.example
 
-import org.example.model.*
 import org.example.controller.*
 import org.example.view.*
 import org.example.Dao.*
@@ -18,15 +17,23 @@ static void main(String[] args) {
 
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))
 
-    CandidatoController candidatoController = new CandidatoController()
-    EmpresaController empresaController = new EmpresaController()
-    VagasController vagasController = new VagasController()
-    CompetenciaController competenciaController = new CompetenciaController()
+    // Repositórios
+    CandidatoRepository candidatoRepository = new CandidatoRepository()
+    EmpresaRepository empresaRepository = new EmpresaRepository()
+    VagasRepository vagasRepository = new VagasRepository()
+    CompetenciaRepository competenciaRepository = new CompetenciaRepository()
 
-    CandidatoView candidatoView = new CandidatoView()
-    EmpresaView empresaView = new EmpresaView()
-    VagasView vagasView = new VagasView()
-    CompetenciaView competenciaView = new CompetenciaView()
+    // Controllers
+    CandidatoController candidatoController = new CandidatoController(candidatoRepository)
+    EmpresaController empresaController = new EmpresaController(empresaRepository)
+    VagasController vagasController = new VagasController(vagasRepository)
+    CompetenciaController competenciaController = new CompetenciaController(competenciaRepository)
+
+    // Views
+    CandidatoView candidatoView = new CandidatoView(candidatoController)
+    EmpresaView empresaView = new EmpresaView(empresaController)
+    VagasView vagasView = new VagasView(vagasController)
+    CompetenciaView competenciaView = new CompetenciaView(competenciaController)
 
     println "=== Bem-vindo ao Sistema de Recrutamento ==="
 
@@ -34,8 +41,8 @@ static void main(String[] args) {
         println "\nEscolha uma opção:"
         println "1 - Gerenciar Candidatos"
         println "2 - Gerenciar Empresas"
-        println "3 - Gerenciar vagas"
-        println "4 - Gerenciar competências"
+        println "3 - Gerenciar Vagas"
+        println "4 - Gerenciar Competências"
         println "5 - Sair"
         print "Opção: "
 
@@ -45,7 +52,7 @@ static void main(String[] args) {
 
             if (input == null) {
                 println "Entrada inválida. Saindo..."
-                break // Sai do loop
+                break
             }
 
             if (input.isEmpty() || !input.matches("\\d+")) {
@@ -70,7 +77,7 @@ static void main(String[] args) {
                     break
                 case 5:
                     println "Tem certeza que deseja sair? (s/n)"
-                    String resposta = reader.readLine()?.trim().toLowerCase()
+                    String resposta = reader.readLine()?.trim()?.toLowerCase()
                     if (resposta == 's') {
                         println "Saindo..."
                         System.exit(0)

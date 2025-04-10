@@ -8,6 +8,10 @@ class EmpresaController {
 
         EmpresaRepository empresaRepository = new EmpresaRepository()
 
+        EmpresaController(EmpresaRepository empresaRepository){
+            this.empresaRepository = empresaRepository
+        }
+
         void adicionarEmpresa(String nome, String email, String cnpj, String pais, String cep, List<Competencia> competencias) {
             Empresa empresa = new Empresa(nome: nome, email: email, cnpj: cnpj, pais: pais, cep: cep, competencias: competencias)
             empresaRepository.inserir(empresa)

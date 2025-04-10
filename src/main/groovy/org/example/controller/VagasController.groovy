@@ -7,6 +7,10 @@ import org.example.Dao.VagasRepository
 class VagasController {
     VagasRepository vagasRepository = new VagasRepository()
 
+    VagasController(VagasRepository vagasRepository){
+        this.vagasRepository = vagasRepository
+    }
+
     void adicionarVaga(String nome, String descricao, Empresa empresa) {
         Vagas vaga = new Vagas(nome, descricao, empresa)
         vagasRepository.inserir(vaga)

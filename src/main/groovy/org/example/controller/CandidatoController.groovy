@@ -7,8 +7,12 @@ import org.example.Dao.*
 class CandidatoController {
     CandidatoRepository candidatoRepository = new CandidatoRepository()
 
-    void adicionarCliente(String nome, String email, String cpf , int idade, String cep, String estado) {
-        Candidato candidato = new Candidato(nome: nome, email: email, cpf: cpf, idade: idade, estado: estado)
+    CandidatoController(CandidatoRepository candidatoRepository) {
+        this.candidatoRepository = candidatoRepository
+    }
+
+    void adicionarCliente(String nome, String email, String cpf , int idade, String cep, String estado, List<Competencia> competencias) {
+        Candidato candidato = new Candidato(nome: nome, email: email, cpf: cpf, idade: idade, cep: cep, estado: estado, competencias)
         candidatoRepository.inserir(candidato)
         println "✅ Cliente cadastrado com sucesso!"
     }
