@@ -1,12 +1,10 @@
 package org.example
 
-import org.example.controller.*
-import org.example.view.*
 import org.example.Dao.*
-import java.io.BufferedReader
-import java.io.InputStreamReader
+import org.example.config.AppConfig
 
 static void main(String[] args) {
+
     try {
         ConnectionFactory.getConnection()
         println "Conexão com o banco de dados estabelecida com sucesso."
@@ -17,23 +15,7 @@ static void main(String[] args) {
 
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))
 
-    // Repositórios
-    CandidatoRepository candidatoRepository = new CandidatoRepository()
-    EmpresaRepository empresaRepository = new EmpresaRepository()
-    VagasRepository vagasRepository = new VagasRepository()
-    CompetenciaRepository competenciaRepository = new CompetenciaRepository()
-
-    // Controllers
-    CandidatoController candidatoController = new CandidatoController(candidatoRepository)
-    EmpresaController empresaController = new EmpresaController(empresaRepository)
-    VagasController vagasController = new VagasController(vagasRepository)
-    CompetenciaController competenciaController = new CompetenciaController(competenciaRepository)
-
-    // Views
-    CandidatoView candidatoView = new CandidatoView(candidatoController)
-    EmpresaView empresaView = new EmpresaView(empresaController)
-    VagasView vagasView = new VagasView(vagasController)
-    CompetenciaView competenciaView = new CompetenciaView(competenciaController)
+    AppConfig appConfig = new AppConfig()
 
     println "=== Bem-vindo ao Sistema de Recrutamento ==="
 
@@ -64,16 +46,16 @@ static void main(String[] args) {
 
             switch (opcao) {
                 case 1:
-                    candidatoView.exibirMenu()
+                    appConfig.candidatoView.exibirMenu()
                     break
                 case 2:
-                    empresaView.exibirMenu()
+                    appConfig.empresaView.exibirMenu()
                     break
                 case 3:
-                    vagasView.exibirMenu()
+                    appConfig.vagasView.exibirMenu()
                     break
                 case 4:
-                    competenciaView.exibirMenu()
+                    appConfig.competenciaView.exibirMenu()
                     break
                 case 5:
                     println "Tem certeza que deseja sair? (s/n)"
