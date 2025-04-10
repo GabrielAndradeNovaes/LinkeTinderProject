@@ -73,8 +73,8 @@ class CandidatoView {
             String nomeComp = scanner.nextLine()
             competencias.add(new Competencia(nomeComp))
         }
-
-        controller.adicionarCliente(nome, email, cpf, idade, cep, estado, competencias)
+        Candidato candidato = new Candidato(nome, email, cpf, idade, cep, estado, competencias)
+        controller.adicionarCliente(candidato)
     }
 
     void listarTodosCandidatos() {

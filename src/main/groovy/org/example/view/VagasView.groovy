@@ -70,7 +70,8 @@ class VagasView {
         String nomeEmpresa = scanner.nextLine()
 
         Empresa empresa = new Empresa(nome: nomeEmpresa)
-        controller.adicionarVaga(nome, descricao, empresa)
+        Vagas vagas = new Vagas(nome, descricao, empresa)
+        controller.adicionarVaga(vagas)
     }
 
     void removerVaga() {

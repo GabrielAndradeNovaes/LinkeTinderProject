@@ -61,8 +61,8 @@ class EmpresaView {
         String cep = scanner.nextLine()
 
         List<Competencia> competencias = coletarCompetencias()
-
-        controller.adicionarEmpresa(nome, email, cnpj, pais, cep, competencias)
+        Empresa empresa = new Empresa(nome, email, cnpj, pais, cep, competencias)
+        controller.adicionarEmpresa(empresa)
     }
 
     List<Competencia> coletarCompetencias() {

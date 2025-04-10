@@ -45,7 +45,8 @@ class CompetenciaView {
     void adicionarCompetencia() {
         print "Nome da Competência: "
         String nome = scanner.nextLine()
-        controller.adicionarCompetencia(nome)
+        Competencia competencia = new  Competencia(nome)
+        controller.adicionarCompetencia(competencia)
     }
 
     void listarCompetencias() {
