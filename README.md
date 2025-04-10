@@ -39,23 +39,32 @@ O sistema foi projetado para gerenciar candidatos e empresas, com funcionalidade
 
 ## Tecnologias utilizadas
 - **Groovy**: Linguagem de programação utilizada para o desenvolvimento do sistema.
-- **Scanner**: Utilizado para capturar entradas do usuário no terminal.
+- **Gradle**: Utilizado como sistema de automação de builds.
 - **Spock Framework**: Utilizado para criação de testes automatizados.
 
 ## Como Executar o Projeto
 
 ### Pré-requisitos
-- Você precisa ter o **Groovy** instalado em sua máquina. Caso ainda não tenha, siga os passos de instalação no [site oficial do Groovy](https://groovy-lang.org/download.html).
+- Você precisa ter o **Groovy** e o **Gradle** instalados em sua máquina.
 
 ### Passos para rodar o projeto
-1. Faça o clone deste repositório em sua máquina local.
+1. Faça o clone deste repositório em sua máquina local:
    ```bash
-   git clone https://github.com/seu-usuario/linketinder.git
+   git clone https://github.com/GabrielAndradeNovaes/linketinderProject.git
+   ```
 2. Navegue até o diretório do projeto:
    ```bash
    cd linketinder
-3. Compile e execute o projeto com o Groovy:
+   ```
+3. Execute o projeto com o Gradle:
    ```bash
-   groovy org/example/Main.groovy
+   ./gradlew run
+   ```
 
-![Imagem da modelagem de dados](./frontend/modelagem.png)
+## Refatorações Recentes
+
+Este projeto passou por diversas refatorações para melhorar a estrutura, organização, legibilidade e testabilidade do código. Você pode acessar todos os detalhes técnicos no arquivo [REFACTOR.md](./REFACTOR.md).
+
+## Imagem da modelagem de dados
+
+![Imagem da modelagem de dados](Untitled%20(1).png)
