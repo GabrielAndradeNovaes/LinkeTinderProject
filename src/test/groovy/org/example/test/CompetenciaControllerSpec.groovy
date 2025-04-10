@@ -5,17 +5,17 @@ import org.example.model.Competencia
 import org.example.Dao.CompetenciaRepository
 import spock.lang.Specification
 
-class CompetenciaSpec extends Specification {
+class CompetenciaControllerSpec extends Specification {
 
     CompetenciaRepository competenciaRepository
     CompetenciaController competenciaController
 
-    def setup() {
+    void setup() {
         competenciaRepository = Mock(CompetenciaRepository)
         competenciaController = new CompetenciaController(competenciaRepository)
     }
 
-    def "Deve adicionar uma competência com sucesso"() {
+    void "Deve adicionar uma competência com sucesso"() {
         given: "Nome de uma nova competência"
         String nome = "Java"
 
@@ -28,14 +28,14 @@ class CompetenciaSpec extends Specification {
         })
     }
 
-    def "Deve listar todas as competências"() {
+    void "Deve listar todas as competências"() {
         given: "Uma lista de competências"
-        def comp1 = new Competencia("Java")
-        def comp2 = new Competencia("Groovy")
+        Competencia comp1 = new Competencia("Java")
+        Competencia comp2 = new Competencia("Groovy")
         competenciaRepository.listarTodas() >> [comp1, comp2]
 
         when: "O método listarCompetencias é chamado"
-        def competencias = competenciaController.listarCompetencias()
+        List<Competencia> competencias = competenciaController.listarCompetencias()
 
         then: "A lista de competências deve ser retornada corretamente"
         competencias.size() == 2
@@ -43,7 +43,7 @@ class CompetenciaSpec extends Specification {
         competencias[1].nome == "Groovy"
     }
 
-    def "Deve apagar uma competência com sucesso"() {
+    void "Deve apagar uma competência com sucesso"() {
         given: "Nome da competência a ser apagada"
         String nome = "Java"
 

@@ -6,17 +6,17 @@ import org.example.model.Empresa
 import org.example.model.Vagas
 import spock.lang.Specification
 
-class VagasSpec extends Specification {
+class VagasControllerSpec extends Specification {
 
     VagasRepository vagasRepository
     VagasController vagasController
 
-    def setup() {
+    void setup() {
         vagasRepository = Mock(VagasRepository)
         vagasController = new VagasController(vagasRepository)
     }
 
-    def "Deve adicionar uma vaga com sucesso"() {
+    void "Deve adicionar uma vaga com sucesso"() {
         given: "Uma empresa e os dados da vaga"
         Empresa empresa = new Empresa(1, "ACME Corp")
         String nome = "Desenvolvedor Back-end"
@@ -33,18 +33,18 @@ class VagasSpec extends Specification {
         })
     }
 
-    def "Deve listar todas as vagas"() {
+    void "Deve listar todas as vagas"() {
         given: "Uma lista de vagas"
         Empresa empresa1 = new Empresa(1, "ACME Corp")
         Empresa empresa2 = new Empresa(2, "Tech Solutions")
 
-        def vaga1 = new Vagas("Dev Java", "Trabalhar com Spring Boot", empresa1)
-        def vaga2 = new Vagas("Dev Front-end", "Trabalhar com React", empresa2)
+        Vagas vaga1 = new Vagas("Dev Java", "Trabalhar com Spring Boot", empresa1)
+        Vagas vaga2 = new Vagas("Dev Front-end", "Trabalhar com React", empresa2)
 
         vagasRepository.listarTodas() >> [vaga1, vaga2]
 
         when: "O método listarVagas é chamado"
-        def vagas = vagasController.listarVagas()
+        List<Vagas> vagas = vagasController.listarVagas()
 
         then: "A lista de vagas deve ser retornada corretamente"
         vagas.size() == 2
@@ -54,7 +54,7 @@ class VagasSpec extends Specification {
         vagas[1].empresa.nome == "Tech Solutions"
     }
 
-    def "Deve apagar uma vaga com sucesso"() {
+    void "Deve apagar uma vaga com sucesso"() {
         given: "O nome da vaga a ser apagada"
         String nome = "Dev Java"
 

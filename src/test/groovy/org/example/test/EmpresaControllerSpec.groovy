@@ -6,17 +6,17 @@ import org.example.model.Competencia
 import org.example.Dao.EmpresaRepository
 import spock.lang.Specification
 
-class EmpresaSpec extends Specification {
+class EmpresaControllerSpec extends Specification {
 
     EmpresaRepository empresaRepository
     EmpresaController empresaController
 
-    def setup() {
+    void setup() {
         empresaRepository = Mock(EmpresaRepository)
         empresaController = new EmpresaController(empresaRepository)
     }
 
-    def "Deve adicionar uma empresa com sucesso"() {
+    void "Deve adicionar uma empresa com sucesso"() {
         given: "Dados de uma nova empresa"
         String nome = "Tech Corp"
         String email = "contato@techcorp.com"
@@ -39,14 +39,14 @@ class EmpresaSpec extends Specification {
         })
     }
 
-    def "Deve listar todas as empresas"() {
+    void "Deve listar todas as empresas"() {
         given: "Uma lista de empresas mockada"
-        def empresa1 = new Empresa(nome: "Tech Corp", email: "contato@techcorp.com", cnpj: "12.345.678/0001-90", pais: "Brasil", cep: "12345-678", competencias: [])
-        def empresa2 = new Empresa(nome: "Inova Ltda", email: "inova@email.com", cnpj: "98.765.432/0001-00", pais: "Brasil", cep: "98765-432", competencias: [])
+        Empresa empresa1 = new Empresa(nome: "Tech Corp", email: "contato@techcorp.com", cnpj: "12.345.678/0001-90", pais: "Brasil", cep: "12345-678", competencias: [])
+        Empresa empresa2 = new Empresa(nome: "Inova Ltda", email: "inova@email.com", cnpj: "98.765.432/0001-00", pais: "Brasil", cep: "98765-432", competencias: [])
         empresaRepository.listarTodas() >> [empresa1, empresa2]
 
         when: "O método listarEmpresas é chamado"
-        def resultado = empresaController.listarEmpresas()
+        List<Empresa> resultado = empresaController.listarEmpresas()
 
         then: "As empresas devem ser retornadas corretamente"
         resultado.size() == 2
@@ -54,21 +54,21 @@ class EmpresaSpec extends Specification {
         resultado[1].nome == "Inova Ltda"
     }
 
-    def "Deve buscar uma empresa por ID"() {
+    void "Deve buscar uma empresa por ID"() {
         given: "ID da empresa a ser buscada"
         int empresaId = 1
-        def empresa = new Empresa(nome: "Tech Corp", email: "contato@techcorp.com", cnpj: "12.345.678/0001-90", pais: "Brasil", cep: "12345-678", competencias: [])
+        Empresa empresa = new Empresa(nome: "Tech Corp", email: "contato@techcorp.com", cnpj: "12.345.678/0001-90", pais: "Brasil", cep: "12345-678", competencias: [])
         empresaRepository.listarUma(empresaId) >> empresa
 
         when: "O método buscarEmpresa é chamado"
-        def resultado = empresaController.buscarEmpresa(empresaId)
+        Empresa resultado = empresaController.buscarEmpresa(empresaId)
 
         then: "A empresa correta deve ser retornada"
         resultado != null
         resultado.nome == "Tech Corp"
     }
 
-    def "Deve apagar uma empresa com sucesso"() {
+    void "Deve apagar uma empresa com sucesso"() {
         given: "ID da empresa a ser apagada"
         int empresaId = 1
 
