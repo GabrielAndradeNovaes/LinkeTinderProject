@@ -114,3 +114,17 @@ def vagas = controller.listarVagas() → List<Vagas> vagas = controller.listarVa
 
 Objetos como `vaga1`, `vaga2`, `empresa1` e `empresa2` agora possuem tipos explícitos (ex: `Vagas`, `Empresa`, etc).
 
+---
+
+## 🧭 Padronização de Pacotes
+
+### `refactor(package): altera nome de pacote de org.example para org.linketinder`
+
+### 🔄 O que foi feito:
+- Todos os pacotes foram renomeados de `org.example` para `org.linketinder`, para refletir corretamente o nome do projeto.
+
+### ✅ Vantagens:
+- Nome de pacote mais descritivo e alinhado ao propósito do sistema.
+- Facilita organização do código e colaboração.
+- Evita conflitos com pacotes genéricos como `example`.
+
