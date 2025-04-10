@@ -26,7 +26,7 @@ As seguintes views foram refatoradas:
 
 ### `feat(config): extrai inicialização de dependências para AppConfig`
 
-Foi criada a classe `AppConfig`, localizada no pacote `org.example.config`, para gerenciar a criação de dependências (`Repositories`, `Controllers` e `Views`).
+Foi criada a classe `AppConfig`, localizada no pacote `org.linketinder.config`, para gerenciar a criação de dependências (`Repositories`, `Controllers` e `Views`).
 
 ### 🔨 Mudanças principais:
 - **Criação da classe `AppConfig`:**

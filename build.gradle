@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-group = 'org.example'
+group = 'org.linketinder'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -30,7 +30,7 @@ dependencies {
 }
 
 application {
-    mainClassName = 'org.example.Main'
+    mainClassName = 'org.linketinder.Main'
 
     applicationDefaultJvmArgs = ["-Dorg.gradle.daemon=false"]
 
