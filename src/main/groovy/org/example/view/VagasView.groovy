@@ -70,14 +70,24 @@ class VagasView {
         String nomeEmpresa = scanner.nextLine()
 
         Empresa empresa = new Empresa(nome: nomeEmpresa)
-        Vagas vagas = new Vagas(nome, descricao, empresa)
-        controller.adicionarVaga(vagas)
+
+        boolean sucesso = controller.adicionarVaga(nome, descricao, empresa)
+        if (sucesso) {
+            println "✅ Vaga cadastrada com sucesso!"
+        } else {
+            println "❌ Erro ao cadastrar a vaga."
+        }
     }
 
     void removerVaga() {
         println "Digite o nome da vaga para remover: "
         String nomeVaga = scanner.nextLine()
 
-        controller.apagarVaga(nomeVaga)
+        boolean sucesso = controller.apagarVaga(nomeVaga)
+        if (sucesso) {
+            println "✅ Vaga removida com sucesso!"
+        } else {
+            println "❌ Erro ao remover a vaga."
+        }
     }
 }

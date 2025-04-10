@@ -74,7 +74,9 @@ class CandidatoView {
             competencias.add(new Competencia(nomeComp))
         }
         Candidato candidato = new Candidato(nome, email, cpf, idade, cep, estado, competencias)
-        controller.adicionarCliente(candidato)
+        boolean sucesso = controller.adicionarCliente(candidato)
+
+        println sucesso ? "✅ Cliente cadastrado com sucesso!" : "❌ Erro ao cadastrar cliente."
     }
 
     void listarTodosCandidatos() {
@@ -100,6 +102,7 @@ class CandidatoView {
         int id = scanner.nextInt()
         scanner.nextLine()
 
-        controller.apagarCandidato(id)
+        boolean sucesso = controller.apagarCandidato(id)
+        println sucesso ? "✅ Candidato removido com sucesso!" : "❌ Erro ao remover candidato."
     }
 }

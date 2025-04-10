@@ -61,8 +61,13 @@ class EmpresaView {
         String cep = scanner.nextLine()
 
         List<Competencia> competencias = coletarCompetencias()
-        Empresa empresa = new Empresa(nome, email, cnpj, pais, cep, competencias)
-        controller.adicionarEmpresa(empresa)
+        boolean sucesso = controller.adicionarEmpresa(nome, email, cnpj, pais, cep, competencias)
+
+        if (sucesso) {
+            println "✅ Empresa cadastrada com sucesso!"
+        } else {
+            println "❌ Erro ao cadastrar a empresa."
+        }
     }
 
     List<Competencia> coletarCompetencias() {
@@ -113,6 +118,11 @@ class EmpresaView {
         int id = scanner.nextInt()
         scanner.nextLine()
 
-        controller.apagarEmpresa(id)
+        boolean sucesso = controller.apagarEmpresa(id)
+        if (sucesso) {
+            println "✅ Empresa removida com sucesso!"
+        } else {
+            println "❌ Erro ao remover a empresa."
+        }
     }
 }

@@ -4,24 +4,32 @@ import org.example.model.Competencia
 import org.example.Dao.CompetenciaRepository
 
 class CompetenciaController {
-    CompetenciaRepository competenciaRepository = new CompetenciaRepository()\
+    CompetenciaRepository competenciaRepository = new CompetenciaRepository()
 
-    CompetenciaController(CompetenciaRepository competenciaRepository){
+    CompetenciaController(CompetenciaRepository competenciaRepository) {
         this.competenciaRepository = competenciaRepository
     }
 
-    void adicionarCompetencia(String nome) {
-        Competencia competencia = new Competencia(nome)
-        competenciaRepository.inserir(competencia)
-        println "✅ Competência cadastrada com sucesso!"
+    boolean adicionarCompetencia(String nome) {
+        try {
+            Competencia competencia = new Competencia(nome)
+            competenciaRepository.inserir(competencia)
+            return true
+        } catch (Exception e) {
+            return false
+        }
     }
 
     List<Competencia> listarCompetencias() {
         return competenciaRepository.listarTodas()
     }
 
-    void apagarCompetencia(String nome) {
-        competenciaRepository.apagar(nome)
-        println "✅ Competência removida com sucesso!"
+    boolean apagarCompetencia(String nome) {
+        try {
+            competenciaRepository.apagar(nome)
+            return true
+        } catch (Exception e) {
+            return false
+        }
     }
 }

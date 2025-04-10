@@ -1,8 +1,8 @@
 package org.example.view
 
 import org.example.controller.CompetenciaController
-import java.util.Scanner
 import org.example.model.Competencia
+import java.util.Scanner
 
 class CompetenciaView {
     Scanner scanner = new Scanner(System.in)
@@ -45,8 +45,12 @@ class CompetenciaView {
     void adicionarCompetencia() {
         print "Nome da Competência: "
         String nome = scanner.nextLine()
-        Competencia competencia = new  Competencia(nome)
-        controller.adicionarCompetencia(competencia)
+        boolean sucesso = controller.adicionarCompetencia(nome)
+        if (sucesso) {
+            println "✅ Competência cadastrada com sucesso!"
+        } else {
+            println "❌ Erro ao cadastrar a competência."
+        }
     }
 
     void listarCompetencias() {
@@ -61,6 +65,11 @@ class CompetenciaView {
     void removerCompetencia() {
         print "Nome da Competência a remover: "
         String nome = scanner.nextLine()
-        controller.apagarCompetencia(nome)
+        boolean sucesso = controller.apagarCompetencia(nome)
+        if (sucesso) {
+            println "✅ Competência removida com sucesso!"
+        } else {
+            println "❌ Erro ao remover a competência."
+        }
     }
 }

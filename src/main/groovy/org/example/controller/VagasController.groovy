@@ -7,22 +7,30 @@ import org.example.Dao.VagasRepository
 class VagasController {
     VagasRepository vagasRepository = new VagasRepository()
 
-    VagasController(VagasRepository vagasRepository){
+    VagasController(VagasRepository vagasRepository) {
         this.vagasRepository = vagasRepository
     }
 
-    void adicionarVaga(String nome, String descricao, Empresa empresa) {
-        Vagas vaga = new Vagas(nome, descricao, empresa)
-        vagasRepository.inserir(vaga)
-        println "✅ Vaga cadastrada com sucesso!"
+    boolean adicionarVaga(String nome, String descricao, Empresa empresa) {
+        try {
+            Vagas vaga = new Vagas(nome, descricao, empresa)
+            vagasRepository.inserir(vaga)
+            return true
+        } catch (Exception e) {
+            return false
+        }
     }
 
     List<Vagas> listarVagas() {
         return vagasRepository.listarTodas()
     }
 
-    void apagarVaga(String nome) {
-        vagasRepository.apagar(nome)
-        println "✅ Vaga removida com sucesso!"
+    boolean apagarVaga(String nome) {
+        try {
+            vagasRepository.apagar(nome)
+            return true
+        } catch (Exception e) {
+            return false
+        }
     }
 }
