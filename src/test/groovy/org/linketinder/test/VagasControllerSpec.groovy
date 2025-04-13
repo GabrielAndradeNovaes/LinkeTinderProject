@@ -56,12 +56,12 @@ class VagasControllerSpec extends Specification {
 
     void "Deve apagar uma vaga com sucesso"() {
         given: "O nome da vaga a ser apagada"
-        String nome = "Dev Java"
+        int id = "1"
 
         when: "O método apagarVaga é chamado"
-        vagasController.apagarVaga(nome)
+        vagasController.apagarVaga(id)
 
         then: "O método apagar deve ser chamado com o nome correto"
-        1 * vagasRepository.apagar(nome)
+        1 * vagasRepository.apagar(id)
     }
 }

@@ -1,12 +1,14 @@
 package org.linketinder.Dao
 
+import org.linketinder.Dao.interfaces.ICompetenciaRepository
+
 import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
 import org.linketinder.model.Competencia
 
-class CompetenciaRepository {
+class CompetenciaRepository implements ICompetenciaRepository{
     Connection con
 
     CompetenciaRepository() {
@@ -43,11 +45,31 @@ class CompetenciaRepository {
         return competencias
     }
 
-    void apagar(String nome) {
-        String sql = "DELETE FROM competencias WHERE nome = ?"
+    Competencia listarUm(int id) {
+        String sql = "SELECT * FROM competencias WHERE id = ?"
+        Competencia competencia = null
         try {
             PreparedStatement stmt = con.prepareStatement(sql)
-            stmt.setString(1, nome)
+            stmt.setInt(1, id)
+            ResultSet rs = stmt.executeQuery()
+
+            if (rs.next()) {
+                competencia = new Competencia(rs.getString("nome"))
+            }
+
+            rs.close()
+            stmt.close()
+        } catch (SQLException e) {
+            e.printStackTrace()
+        }
+        return competencia
+    }
+
+    void apagar(int id) {
+        String sql = "DELETE FROM competencias WHERE id = ?"
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql)
+            stmt.setInt(1, id)
             stmt.executeUpdate()
             stmt.close()
         } catch (SQLException e) {

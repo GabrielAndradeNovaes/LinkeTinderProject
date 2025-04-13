@@ -1,12 +1,14 @@
 package org.linketinder.Dao
 
+import org.linketinder.Dao.interfaces.ICandidatoRepository
+
 import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
 import org.linketinder.model.Candidato
 
-class CandidatoRepository {
+class CandidatoRepository implements ICandidatoRepository{
 
     Connection con
 

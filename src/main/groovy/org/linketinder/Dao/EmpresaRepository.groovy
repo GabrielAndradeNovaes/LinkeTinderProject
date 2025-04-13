@@ -1,5 +1,7 @@
 package org.linketinder.Dao
 
+import org.linketinder.Dao.interfaces.IEmpresaRepository
+
 import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
@@ -7,7 +9,7 @@ import java.sql.SQLException
 import org.linketinder.model.Empresa
 import org.linketinder.model.Competencia
 
-class EmpresaRepository {
+class EmpresaRepository implements IEmpresaRepository{
     Connection con
 
     EmpresaRepository() {

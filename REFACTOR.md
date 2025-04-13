@@ -128,3 +128,53 @@ Objetos como `vaga1`, `vaga2`, `empresa1` e `empresa2` agora possuem tipos expl�
 - Facilita organização do código e colaboração.
 - Evita conflitos com pacotes genéricos como `example`.
 
+## Refatoração dos Repositórios e Controllers
+
+### `refactor: aplicar interfaces e injeção de dependência em todos os repositórios e controllers`
+
+## 📌 O que foi feito:
+
+- **Criação de Interfaces Específicas para Repositórios**:
+  Interfaces como `ICandidatoRepository`, `IEmpresaRepository`, `ICompetenciaRepository`, `IVagaRepository`, entre outras, foram criadas para definir contratos de uso para cada entidade.
+
+- **Implementação das Interfaces nos Repositórios**:
+  As classes concretas de repositórios passaram a implementar suas respectivas interfaces, garantindo que todas as operações sejam padronizadas e abstraídas pela interface.
+
+- **Atualização dos Controllers para Injeção de Dependência**:
+  Os controllers foram adaptados para receber as dependências via construtor (injeção de dependência), ao invés de criarem suas próprias instâncias dos repositórios. Isso promove maior flexibilidade e facilita a testabilidade.
+
+- **Isolamento entre Camadas de Controle e Persistência**:
+  A camada de controle (controllers) e a camada de persistência (repositórios) agora estão desacopladas, melhorando a organização e a manutenção do código.
+
+## 🚀 Benefícios da Refatoração:
+
+- **Aplicação do Princípio da Inversão de Dependência (SOLID)**:
+  A refatoração segue o princípio SOLID, especificamente o princípio da inversão de dependência, onde os módulos de alto nível (controllers) não dependem de módulos de baixo nível (repositórios), mas de abstrações (interfaces).
+
+- **Maior Flexibilidade e Extensibilidade**:
+  Com as interfaces, é possível criar diferentes implementações de repositórios, como por exemplo, versões em memória, baseadas em banco de dados, arquivos, entre outras. Isso facilita a adaptação do sistema a diferentes necessidades no futuro.
+
+- **Código Mais Testável**:
+  A refatoração permite que as interfaces sejam mockadas facilmente nos testes unitários, o que facilita a realização de testes isolados e a garantia de um comportamento correto da aplicação.
+
+- **Arquitetura Mais Limpa, Modular e Sustentável**:
+  A aplicação fica mais organizada e a estrutura do código é mais limpa e modular, o que facilita a manutenção e evolução do sistema.
+
+- **Desacoplamento Entre Lógica de Negócio e Camada de Persistência**:
+  A lógica de negócio agora está desacoplada da lógica de persistência, permitindo que mudanças na forma como os dados são armazenados ou acessados não impactem diretamente a lógica de negócio, tornando o sistema mais flexível e fácil de modificar.
+
+## 🛠️ Exemplos de Código:
+
+### 1. Interface do Repositório:
+
+```groovy
+package org.linketinder.Dao.interfaces
+
+import org.linketinder.model.Candidato
+
+interface ICandidatoRepository {
+    void inserir(Candidato candidato)
+    Candidato listarUm(int id)
+    List<Candidato> listarTodos()
+    void apagar(int id)
+}

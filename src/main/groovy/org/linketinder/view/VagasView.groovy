@@ -79,10 +79,10 @@ class VagasView {
     }
 
     void removerVaga() {
-        println "Digite o nome da vaga para remover: "
-        String nomeVaga = scanner.nextLine()
+        println "Digite o id da vaga para remover: "
+        int id = scanner.nextInt()
 
-        boolean sucesso = controller.apagarVaga(nomeVaga)
+        boolean sucesso = controller.apagarVaga(id)
         if (sucesso) {
             println "✅ Vaga removida com sucesso!"
         } else {

@@ -1,13 +1,13 @@
 package org.linketinder.controller
 
+import org.linketinder.Dao.interfaces.IVagasRepository
 import org.linketinder.model.Vagas
 import org.linketinder.model.Empresa
-import org.linketinder.Dao.VagasRepository
 
 class VagasController {
-    VagasRepository vagasRepository = new VagasRepository()
+    private final IVagasRepository vagasRepository
 
-    VagasController(VagasRepository vagasRepository) {
+    VagasController(IVagasRepository vagasRepository) {
         this.vagasRepository = vagasRepository
     }
 
@@ -25,9 +25,9 @@ class VagasController {
         return vagasRepository.listarTodas()
     }
 
-    boolean apagarVaga(String nome) {
+    boolean apagarVaga(int id) {
         try {
-            vagasRepository.apagar(nome)
+            vagasRepository.apagar(id)
             return true
         } catch (Exception e) {
             return false

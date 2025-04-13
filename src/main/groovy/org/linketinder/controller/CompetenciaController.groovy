@@ -1,12 +1,13 @@
 package org.linketinder.controller
 
+import org.linketinder.Dao.interfaces.ICompetenciaRepository
 import org.linketinder.model.Competencia
 import org.linketinder.Dao.CompetenciaRepository
 
 class CompetenciaController {
-    CompetenciaRepository competenciaRepository = new CompetenciaRepository()
+    private final ICompetenciaRepository competenciaRepository
 
-    CompetenciaController(CompetenciaRepository competenciaRepository) {
+    CompetenciaController(ICompetenciaRepository competenciaRepository) {
         this.competenciaRepository = competenciaRepository
     }
 
@@ -24,9 +25,9 @@ class CompetenciaController {
         return competenciaRepository.listarTodas()
     }
 
-    boolean apagarCompetencia(String nome) {
+    boolean apagarCompetencia(int id) {
         try {
-            competenciaRepository.apagar(nome)
+            competenciaRepository.apagar(id)
             return true
         } catch (Exception e) {
             return false

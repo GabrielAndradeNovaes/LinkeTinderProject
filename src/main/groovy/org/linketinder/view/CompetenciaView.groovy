@@ -62,9 +62,9 @@ class CompetenciaView {
     }
 
     void removerCompetencia() {
-        print "Nome da Competência a remover: "
-        String nome = scanner.nextLine()
-        boolean sucesso = controller.apagarCompetencia(nome)
+        print "ID da Competência a remover: "
+        int id = scanner.nextInt()
+        boolean sucesso = controller.apagarCompetencia(id)
         if (sucesso) {
             println "✅ Competência removida com sucesso!"
         } else {

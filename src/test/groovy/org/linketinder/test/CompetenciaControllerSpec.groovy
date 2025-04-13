@@ -45,12 +45,12 @@ class CompetenciaControllerSpec extends Specification {
 
     void "Deve apagar uma competência com sucesso"() {
         given: "Nome da competência a ser apagada"
-        String nome = "Java"
+        int id = 1
 
         when: "O método apagarCompetencia é chamado"
-        competenciaController.apagarCompetencia(nome)
+        competenciaController.apagarCompetencia(id)
 
         then: "O método apagar deve ser chamado uma vez com o nome correto"
-        1 * competenciaRepository.apagar(nome)
+        1 * competenciaRepository.apagar(id)
     }
 }

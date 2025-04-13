@@ -1,12 +1,13 @@
 package org.linketinder.controller
 
+import org.linketinder.Dao.interfaces.ICandidatoRepository
 import org.linketinder.model.*
 import org.linketinder.Dao.*
 
 class CandidatoController {
-    CandidatoRepository candidatoRepository
+    private final ICandidatoRepository candidatoRepository
 
-    CandidatoController(CandidatoRepository candidatoRepository) {
+    CandidatoController(ICandidatoRepository candidatoRepository) {
         this.candidatoRepository = candidatoRepository
     }
 

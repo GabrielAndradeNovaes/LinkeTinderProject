@@ -1,14 +1,14 @@
 package org.linketinder.controller
 
+import org.linketinder.Dao.interfaces.IEmpresaRepository
 import org.linketinder.model.Empresa
 import org.linketinder.model.Competencia
-import org.linketinder.Dao.EmpresaRepository
 
 class EmpresaController {
 
-    EmpresaRepository empresaRepository = new EmpresaRepository()
+    private final IEmpresaRepository empresaRepository
 
-    EmpresaController(EmpresaRepository empresaRepository) {
+    EmpresaController(IEmpresaRepository empresaRepository) {
         this.empresaRepository = empresaRepository
     }
 

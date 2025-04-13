@@ -56,14 +56,14 @@ class CompetenciaRepositorySpec extends Specification {
 
     void "Deve apagar uma competencia pelo nome"() {
         given:
-        String nome = "Groovy"
+        int id = 1
         connectionMock.prepareStatement(_ as String) >> preparedStatementMock
 
         when:
-        competenciaRepository.apagar(nome)
+        competenciaRepository.apagar(id)
 
         then:
-        1 * preparedStatementMock.setString(1, nome)
+        1 * preparedStatementMock.setInt(1, id)
         1 * preparedStatementMock.executeUpdate()
         1 * preparedStatementMock.close()
         noExceptionThrown()
