@@ -9,7 +9,7 @@ import java.sql.SQLException
 import org.linketinder.model.Competencia
 
 class CompetenciaRepository implements ICompetenciaRepository{
-    Connection con
+    private final Connection con
 
     CompetenciaRepository() {
         this.con = ConnectionFactory.getConnection()

@@ -7,6 +7,7 @@ import org.linketinder.model.Competencia
 class EmpresaView {
     Scanner scanner = new Scanner(System.in)
     EmpresaController controller = new EmpresaController()
+    MatchController matchController = new MatchController()
 
     EmpresaView(EmpresaController controller) {
         this.controller = controller
@@ -19,7 +20,8 @@ class EmpresaView {
             println "2 - Listar Todas as Empresas"
             println "3 - Buscar Empresa por ID"
             println "4 - Apagar Empresa"
-            println "5 - Sair"
+            println "5 - Curtir Candidato"
+            println "6 - Sair"
             print "Escolha uma opção: "
 
             int opcao = scanner.nextInt()
@@ -39,6 +41,9 @@ class EmpresaView {
                     apagarEmpresa()
                     break
                 case 5:
+                    curtirCandidato()
+                    break
+                case 6:
                     println "Saindo..."
                     System.exit(0)
                 default:
@@ -96,6 +101,17 @@ class EmpresaView {
                 println "   Competências: ${empresa.competencias.collect { it.nome }.join(', ')}\n"
             }
         }
+    }
+
+    void curtirCandidato() {
+        println "Digite o ID da empresa que está curtindo:"
+        Long idEmpresa = scanner.nextLong()
+        scanner.nextLine()
+        println "Digite o ID do candidato que deseja curtir:"
+        Long idCandidato = scanner.nextLong()
+        scanner.nextLine()
+        matchController.curtirComoEmpresa(idEmpresa, idCandidato)
+        println "❤️ Empresa $idEmpresa curtiu o candidato $idCandidato"
     }
 
     void buscarEmpresaPorId() {

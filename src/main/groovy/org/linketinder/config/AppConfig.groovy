@@ -12,6 +12,7 @@ import org.linketinder.view.CandidatoView
 import org.linketinder.view.CompetenciaView
 import org.linketinder.view.EmpresaView
 import org.linketinder.view.VagasView
+import org.linketinder.factory.*
 
 class AppConfig {
 
@@ -21,19 +22,11 @@ class AppConfig {
     final CompetenciaView competenciaView
 
     AppConfig() {
-        CandidatoRepository candidatoRepository = new CandidatoRepository()
-        EmpresaRepository empresaRepository = new EmpresaRepository()
-        VagasRepository vagasRepository = new VagasRepository()
-        CompetenciaRepository competenciaRepository = new CompetenciaRepository()
 
-        CandidatoController candidatoController = new CandidatoController(candidatoRepository)
-        EmpresaController empresaController = new EmpresaController(empresaRepository)
-        VagasController vagasController = new VagasController(vagasRepository)
-        CompetenciaController competenciaController = new CompetenciaController(competenciaRepository)
+        this.candidatoView = ViewFactory.criarCandidatoView()
+        this.empresaView = ViewFactory.criarEmpresaView()
+        this.vagasView = ViewFactory.criarVagasView()
+        this.competenciaView = ViewFactory.criarCompetenciaView()
 
-        this.candidatoView = new CandidatoView(candidatoController)
-        this.empresaView = new EmpresaView(empresaController)
-        this.vagasView = new VagasView(vagasController)
-        this.competenciaView = new CompetenciaView(competenciaController)
     }
 }

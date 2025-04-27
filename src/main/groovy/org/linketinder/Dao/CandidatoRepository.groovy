@@ -10,7 +10,7 @@ import org.linketinder.model.Candidato
 
 class CandidatoRepository implements ICandidatoRepository{
 
-    Connection con
+    private final Connection con
 
     CandidatoRepository() {
         this.con = ConnectionFactory.getConnection()

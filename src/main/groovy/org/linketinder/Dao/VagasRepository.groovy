@@ -10,7 +10,7 @@ import org.linketinder.model.Vagas
 import org.linketinder.model.Empresa
 
 class VagasRepository implements IVagasRepository{
-    Connection con
+    private final Connection con
 
     VagasRepository() {
         this.con = ConnectionFactory.getConnection()

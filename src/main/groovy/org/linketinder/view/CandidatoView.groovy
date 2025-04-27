@@ -3,14 +3,17 @@ package org.linketinder.view
 import org.linketinder.model.Candidato
 import org.linketinder.controller.CandidatoController
 import org.linketinder.model.Competencia
+import org.linketinder.controller.MatchController
 
 
 class CandidatoView {
     Scanner scanner = new Scanner(System.in)
     CandidatoController controller = new CandidatoController()
+    MatchController matchController = new MatchController()
 
     CandidatoView(CandidatoController controller) {
         this.controller = controller
+        this.matchController = matchController
     }
 
     void exibirMenu() {
@@ -20,7 +23,8 @@ class CandidatoView {
             println "2 - Listar Todos os Candidatos"
             println "3 - Buscar Candidato por ID"
             println "4 - Apagar Candidato"
-            println "5 - Sair"
+            println "5 - Curtir empresa"
+            println "6 - Sair"
             print "Escolha uma opção: "
 
             int opcao = scanner.nextInt()
@@ -40,6 +44,9 @@ class CandidatoView {
                     apagarCandidato()
                     break
                 case 5:
+                    curtirEmpresa()
+                    break
+                case 6:
                     println "Saindo..."
                     System.exit(0)
                 default:
@@ -95,6 +102,17 @@ class CandidatoView {
 
         Candidato candidato = controller.buscarCandidato(id)
         println candidato ?: "⚠ Candidato não encontrado."
+    }
+
+    void curtirEmpresa() {
+        println "Digite o ID do candidato que está curtindo:"
+        Long idCandidato = scanner.nextLong()
+        scanner.nextLine()
+        println "Digite o ID da empresa que deseja curtir:"
+        Long idEmpresa = scanner.nextLong()
+        scanner.nextLine()
+        matchController.curtirComoCandidato(idCandidato, idEmpresa)
+        println "❤️ Candidato $idCandidato curtiu a empresa $idEmpresa"
     }
 
     void apagarCandidato() {

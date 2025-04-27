@@ -10,7 +10,7 @@ import org.linketinder.model.Empresa
 import org.linketinder.model.Competencia
 
 class EmpresaRepository implements IEmpresaRepository{
-    Connection con
+    private final Connection con
 
     EmpresaRepository() {
         this.con = ConnectionFactory.getConnection()
