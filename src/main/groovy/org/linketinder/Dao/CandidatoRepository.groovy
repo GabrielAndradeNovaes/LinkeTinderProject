@@ -18,8 +18,11 @@ class CandidatoRepository implements ICandidatoRepository{
 
     void inserir(Candidato candidato) {
         String sql = "INSERT INTO candidato (nome, email, cpf, idade, estado, cep) VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
+        PreparedStatement stmt = null
+        ResultSet rs = null
+
         try {
-            PreparedStatement stmt = con.prepareStatement(sql)
+            stmt = con.prepareStatement(sql)
             stmt.with {
                 setString(1, candidato.nome)
                 setString(2, candidato.email)
@@ -29,20 +32,24 @@ class CandidatoRepository implements ICandidatoRepository{
                 setString(6, candidato.cep)
             }
 
-            ResultSet rs = stmt.executeQuery()
-            Long idCandidato = null
-            if (rs.next()) {
-                idCandidato = rs.getLong("id")
+            rs = stmt.executeQuery()
+            if (!rs.next()) {
+                throw new SQLException("Falha ao inserir candidato, nenhum ID retornado.")
             }
-            rs.close()
-            stmt.close()
 
-            candidato.competencias.each { competencia ->
-                inserirCompetenciaParaCandidato(idCandidato, competencia.nome)
+            Long idCandidato = rs.getLong("id")
+
+            if (candidato.competencias != null) {
+                candidato.competencias.each { competencia ->
+                    inserirCompetenciaParaCandidato(idCandidato, competencia.nome)
+                }
             }
 
         } catch (SQLException e) {
-            e.printStackTrace()
+            throw new RuntimeException("Erro ao inserir candidato: ${e.message}", e)
+        } finally {
+            rs?.close()
+            stmt?.close()
         }
     }
 

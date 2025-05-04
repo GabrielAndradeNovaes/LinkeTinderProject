@@ -17,7 +17,11 @@ dependencies {
     implementation 'org.apache.groovy:groovy:4.0.14'
     implementation 'org.postgresql:postgresql:42.7.1'
 
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.3'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.3'
 
+    implementation "org.apache.groovy:groovy-json:4.0.14"
 
     testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
 

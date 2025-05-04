@@ -16,6 +16,7 @@ class CandidatoController {
             candidatoRepository.inserir(candidato)
             return true
         } catch (Exception e) {
+            println("Erro ao adicionar candidato: ${e.message}")
             return false
         }
     }

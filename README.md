@@ -63,7 +63,7 @@ O sistema foi projetado para gerenciar candidatos e empresas, com funcionalidade
 
 ## Refatorações Recentes
 
-Este projeto passou por diversas refatorações para melhorar a estrutura, organização, legibilidade e testabilidade do código. Você pode acessar todos os detalhes técnicos no arquivo [REFACTOR.md](./REFACTOR.md).
+Este projeto passou por diversas refatorações para melhorar a estrutura, organização, legibilidade e testabilidade do código. Você pode acessar todos os detalhes técnicos no arquivo [REFACTOR.md](./REFACTOR.md) e [API.md](./API.MD).
 
 ## Imagem da modelagem de dados
 
